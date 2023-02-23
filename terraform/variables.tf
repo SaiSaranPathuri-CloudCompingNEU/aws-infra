@@ -1,10 +1,9 @@
 variable "region" {
   type    = string
-  default = "us-east-2"
+  default = "us-east-1"
 }
 variable "profile" {
   type    = string
-  default = "dev"
   default = "demo"
 }
 
@@ -30,5 +29,5 @@ variable "private_cidrs" {
 
 variable "aws_availability_zones" {
   type    = list(string)
-  default = ["us-east-2a", "us-east-2b", "us-east-2c"]
+  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
