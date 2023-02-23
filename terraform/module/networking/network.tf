@@ -135,6 +135,7 @@ resource "aws_instance" "example" {
   }
   disable_api_termination = true
   tags = {
+
     "Name" = "My_AWS_Ec2_${timestamp()}"
   }
 }
