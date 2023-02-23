@@ -1,7 +1,7 @@
 /*
 we call our modules here
 */
-module "mynetwork" {
+module "mynetwork-1" {
   /*
     mention the folder where your module is
     */

@@ -17,30 +17,12 @@ resource "aws_internet_gateway" "ig" {
     Name = "igw"
   }
 }
-/* Elastic IP for NAT */
-resource "aws_eip" "nat_eip" {
-  vpc        = true
-  depends_on = [aws_internet_gateway.ig]
-}
-
-/* NAT */
-resource "aws_nat_gateway" "nat" {
-  allocation_id = aws_eip.nat_eip.id
-  subnet_id     = element(aws_subnet.public_subnet.*.id, 0)
-  depends_on    = [aws_internet_gateway.ig]
-  tags = {
-    Name = "nat"
-  }
-}
 
 #code to create a public subnet
 resource "aws_subnet" "public_subnet" {
 
   vpc_id = aws_vpc.my_vpc.id        #specifying to which vpc this public subnet belongs to
   count  = length(var.public_cidrs) #get the count of number of public subnet cidrs you gave
-
-
-  
   #az_count = "${length(data.aws_availability_zones.available.names)}" #get the count of number of availability zones present in the region you are operating in
 
   cidr_block              = var.public_cidrs[count.index]                                                  #setting the cidr_block for this public subnet dynamically
@@ -91,14 +73,6 @@ resource "aws_route" "public_internet_gateway" {
   gateway_id             = aws_internet_gateway.ig.id
 }
 
-#code to create a nat gateway
-resource "aws_route" "private_nat_gateway" {
-  route_table_id         = aws_route_table.private_rt.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat.id
-}
-
-
 
 #code to create subnet route table association for public subnet
 /* Route table associations */
@@ -112,3 +86,56 @@ resource "aws_route_table_association" "private" {
   subnet_id      = element(aws_subnet.private_subnet.*.id, count.index)
   route_table_id = aws_route_table.private_rt.id
 }
+
+
+resource "aws_security_group" "sg" {
+  name_prefix = "app-"
+  vpc_id      = aws_vpc.my_vpc.id
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_key_pair" "deployer" {
+  key_name   = var.key_name
+  public_key = var.ssh_key
+}
+
+resource "aws_instance" "example" {
+  ami                    = var.ami
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.sg.id]
+  subnet_id              = element(aws_subnet.public_subnet.*.id, 0)
+  key_name               = aws_key_pair.deployer.key_name
+  root_block_device {
+    volume_size           = 8
+    volume_type           = "gp2"
+    delete_on_termination = true
+  }
+  disable_api_termination = true
+  tags = {
+    "Name" = "My_AWS_Ec2_${timestamp()}"
+  }
+}
+
