@@ -34,8 +34,8 @@ variable "key_name" {
   default = "ec2_dev"
 }
 
-# variable "ssh_key" {
-#   type    = string
-#   default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFoJMCuNdwdCE4WNpBjWyljoQ9+Qr+JxfnHnZ/emuKZQTRSWHfKa+sEmZy9OG1xGoEVbzjb00UogzOQTnlFxd/s6odlQzaBRlCbpPKhrG7q6pdWrXosu21HDMbqgW4Tg73v+rTmiSis3Yh5ZN+s/xu/1lNQ5OYdSM/PFx7lcZ3HkVd9SX24HX322MsZPuvvPNs4/xAD30Z7OK+ymAxQ+ZZKWL9Sv4TDthVatFoNYEgnF4wWSuHvf2ZmE8EId36/fs/DumrCcJJxq2yT/FatkDF2XQeA/gR1MOYGvOjGMRnDdez3B4xtUoJmZD6AWquHcNbIYN/YGA8whymqN/WwfnQWepY0zURoxb9HRTl70ddNho72Gurzw13Ph9FLxY+PwnZnxxo/AO/E8j56Ddhl2RnzH8H0xGSZcFG59hWMzjAuq7R1ljd3zEfqFTrWRE5F1iwKLHddhGPcaxn1zupkLvIINnLQRnDp1Px5ONJpY4n0/e5nqIR+rYTOn7fWEZeLp8= saisaranpathuri@Sais-MacBook-Air-2.local"
-# }
+variable "ssh_key" {
+  type    = string
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFoJMCuNdwdCE4WNpBjWyljoQ9+Qr+JxfnHnZ/emuKZQTRSWHfKa+sEmZy9OG1xGoEVbzjb00UogzOQTnlFxd/s6odlQzaBRlCbpPKhrG7q6pdWrXosu21HDMbqgW4Tg73v+rTmiSis3Yh5ZN+s/xu/1lNQ5OYdSM/PFx7lcZ3HkVd9SX24HX322MsZPuvvPNs4/xAD30Z7OK+ymAxQ+ZZKWL9Sv4TDthVatFoNYEgnF4wWSuHvf2ZmE8EId36/fs/DumrCcJJxq2yT/FatkDF2XQeA/gR1MOYGvOjGMRnDdez3B4xtUoJmZD6AWquHcNbIYN/YGA8whymqN/WwfnQWepY0zURoxb9HRTl70ddNho72Gurzw13Ph9FLxY+PwnZnxxo/AO/E8j56Ddhl2RnzH8H0xGSZcFG59hWMzjAuq7R1ljd3zEfqFTrWRE5F1iwKLHddhGPcaxn1zupkLvIINnLQRnDp1Px5ONJpY4n0/e5nqIR+rYTOn7fWEZeLp8= saisaranpathuri@Sais-MacBook-Air-2.local"
+}
 
