@@ -12,5 +12,5 @@ key_pair = "test" //Key pair name
 
 database_name     = "csye6225"
 database_username = "csye6225"
-database_password = "Saicharan"
+database_password = "SaranPathuri"
 

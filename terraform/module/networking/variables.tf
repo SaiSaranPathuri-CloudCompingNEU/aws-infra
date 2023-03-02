@@ -31,7 +31,7 @@ variable "ami" {
 
 variable "key_name" {
   type    = string
-  default = "ec2_dev"
+  default = "ec2"
 }
 
 variable "ssh_key" {
