@@ -1,7 +1,7 @@
 # aws-infra
 
 
-STEPS FOR SETTING UP INFRASTRUCTURE FOR TERRAFORM:
+STEPS FOR SETTING UP INFRASTRUCTURE FOR TERRAFORM: .
 -> Create AWS account
 -> Create IAM user and assign admin permission
 -> Install AWS CLI
