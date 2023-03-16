@@ -1,4 +1,4 @@
-profile  = "demo"         //AWS profile
+profile  = "demo"        //AWS profile
 region   = "us-east-1"   //AWS region
 vpc_cidr = "10.1.0.0/16" //VPC cidr range
 
@@ -13,7 +13,8 @@ key_pair = "ec2" //Key pair name
 database_name     = "csye6225"
 database_username = "csye6225"
 database_password = "SaiSaranP"
-zone_id = "Z09945711O01LLMV1BXYH"
-domain_name = "prod.saisaranpathuri.me"
+zone_id           = "Z09945711O01LLMV1BXYH"
+domain_name       = "prod.saisaranpathuri.me"
+
 
 
