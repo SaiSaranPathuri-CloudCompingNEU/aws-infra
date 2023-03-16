@@ -33,6 +33,8 @@ module "myinstance" {
   database_name       = var.database_name
   ec2_iam_role        = module.myBucket.ec2_iam_role
   bucket_name         = module.myBucket.bucket_name
+  zone_id = var.zone_id
+  domain_name = var.domain_name
 
 }
 
