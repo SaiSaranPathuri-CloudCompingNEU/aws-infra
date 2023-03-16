@@ -44,4 +44,12 @@ variable "bucket_name" {
   description = "The name of the S3 bucket"
 }
 
+variable "zone_id" {
+  description = "Zone ID for Route 53"
+}
+
+variable "domain_name" {
+  description = "Domain name of the Route 53 domain"
+}
+
 

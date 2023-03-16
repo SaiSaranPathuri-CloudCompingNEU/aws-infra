@@ -46,3 +46,13 @@ variable "database_name" {
   description = "The name of the database"
   default     = "CSYEWebapp"
 }
+
+variable "zone_id" {
+  description = "Zone ID for Route 53"
+}
+
+variable "domain_name" {
+  description = "Domain name of the Route 53 domain"
+}
+
+ 

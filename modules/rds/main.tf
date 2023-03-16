@@ -40,7 +40,7 @@ resource "aws_db_instance" "db_instance" {
   allocated_storage    = 20
   storage_type         = "gp2"
   multi_az             = false
-  publicly_accessible  = true
+  publicly_accessible  = false
   db_subnet_group_name = aws_db_subnet_group.db_subnet_group.name
   tags = {
     Name = "db_instance"

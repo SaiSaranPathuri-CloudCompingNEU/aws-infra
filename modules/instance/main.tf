@@ -173,3 +173,12 @@ resource "aws_iam_instance_profile" "app_instance_profile" {
 output "app_security_group_id" {
   value = aws_security_group.app_sg.id
 }
+
+
+resource "aws_route53_record" "www" {
+  zone_id = var.zone_id
+  name    = var.domain_name
+  type    = "A"
+  ttl     = "60"
+  records = [aws_instance.app_instance.public_ip]
+}

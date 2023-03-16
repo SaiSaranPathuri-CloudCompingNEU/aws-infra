@@ -13,4 +13,7 @@ key_pair = "ec2" //Key pair name
 database_name     = "csye6225"
 database_username = "csye6225"
 database_password = "SaiSaranP"
+zone_id = "Z09945711O01LLMV1BXYH"
+domain_name = "prod.saisaranpathuri.me"
+
 
