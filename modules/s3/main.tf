@@ -89,7 +89,4 @@ output "ec2_iam_role" {
   value = aws_iam_role.WebAppS3_role.name
 }
 
-
-
-
 # Path: modules/instance/main.tf
