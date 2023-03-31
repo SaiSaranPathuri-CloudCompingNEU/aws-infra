@@ -7,7 +7,7 @@ private_subnets_cidr = ["10.1.4.0/24", "10.1.5.0/24", "10.1.6.0/24"]
 availability_zones   = ["us-east-1a", "us-east-1b", "us-east-1c"]
 
 # ami_id   = "ami-045a2c6d9bd7a0d9d"  //AMI ID
-ami_id   = "ami-043b974d07ec27485"
+ami_id   = "ami-020950e582e1e0229"
 key_pair = "ec2" //Key pair name
 
 database_name     = "csye6225"
