@@ -14,6 +14,11 @@ resource "aws_security_group" "database" {
     "Name" = "database-sg"
   }
 }
+
+resource "random_id" "id" {
+  byte_length = 4
+}
+
 #Rds subnet group
 resource "aws_db_subnet_group" "db_subnet_group" {
   name        = "db_subnet_group"
@@ -50,7 +55,7 @@ resource "aws_db_instance" "db_instance" {
   multi_az                  = false
   skip_final_snapshot       = true
   final_snapshot_identifier = "final-snapshot"
-  publicly_accessible       = true
+  publicly_accessible       = false
   db_subnet_group_name      = aws_db_subnet_group.db_subnet_group.name
   tags = {
     Name = "db_instance"
@@ -166,7 +171,7 @@ sh setenv.sh
 
 #attach iam role to ec2 instance
 resource "aws_iam_instance_profile" "app_instance_profile" {
-  name = "app_instance_profile"
+  name = "app_instance_profile-${random_id.id.hex}"
   role = var.ec2_iam_role
 }
 
@@ -177,7 +182,7 @@ output "app_security_group_id" {
 
 resource "aws_route53_record" "www" {
   zone_id = var.zone_id
-  name    = var.domain_name
+  name    =  var.domain_name
   type    = "A"
   ttl     = "60"
   records = [aws_instance.app_instance.public_ip]
