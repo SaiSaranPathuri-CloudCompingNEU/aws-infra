@@ -25,6 +25,7 @@ resource "aws_s3_bucket" "mybucket" {
 
 }
 
+
 resource "aws_s3_bucket_public_access_block" "public_access" {
   bucket = aws_s3_bucket.mybucket.id
 
@@ -33,6 +34,7 @@ resource "aws_s3_bucket_public_access_block" "public_access" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 }
+
 
 #iam policy for ec2 to access s3
 resource "aws_iam_policy" "WebAppS3_policy" {
@@ -77,19 +79,29 @@ resource "aws_iam_role_policy_attachment" "WebAppS3_role_policy_attachment" {
   role       = aws_iam_role.WebAppS3_role.name
   policy_arn = aws_iam_policy.WebAppS3_policy.arn
 }
+
 #cloud watch policy
 resource "aws_iam_role_policy_attachment" "CloudwatchPolicy" {
   role       = aws_iam_role.WebAppS3_role.name
   policy_arn = "arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy"
 }
+
+
+resource "aws_cloudwatch_log_group" "csye6225_lg" {
+  name = "csye6225"
+}
+
+resource "aws_cloudwatch_log_stream" "foo" {
+  name           = "webapp"
+  log_group_name = aws_cloudwatch_log_group.csye6225_lg.name
+}
+
+
 output "bucket_name" {
   value = aws_s3_bucket.mybucket.bucket
 }
 output "ec2_iam_role" {
   value = aws_iam_role.WebAppS3_role.name
 }
-
-
-
 
 # Path: modules/instance/main.tf
