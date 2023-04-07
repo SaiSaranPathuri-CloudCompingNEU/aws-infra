@@ -275,7 +275,7 @@ resource "aws_cloudwatch_metric_alarm" "scale_up_alarm" {
   namespace           = "AWS/EC2"
   period              = "60"
   statistic           = "Minimum"
-  threshold           = "2"
+  threshold           = "1"
   dimensions = {
     "AutoScalingGroupName" = "${aws_autoscaling_group.asg.name}"
   }
@@ -296,12 +296,12 @@ resource "aws_cloudwatch_metric_alarm" "scale_down_alarm" {
   alarm_name          = "scale-down-alarm"
   alarm_description   = "Scale Down Alarm"
   comparison_operator = "LessThanThreshold"
-  evaluation_periods  = "4"
+  evaluation_periods  = "1"
   metric_name         = "CPUUtilization"
   namespace           = "AWS/EC2"
   period              = "60"
   statistic           = "Average"
-  threshold           = "3"
+  threshold           = "1.8"
   dimensions = {
     "AutoScalingGroupName" = "${aws_autoscaling_group.asg.name}"
   }
