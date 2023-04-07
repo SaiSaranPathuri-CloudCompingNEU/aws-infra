@@ -197,7 +197,7 @@ output "app_security_group_id" {
  # Inserting A record in the route53 hosted Zone
 resource "aws_route53_record" "www" {
   zone_id = var.zone_id
-  name    = var.name
+  name    = var.domain_name
   type    = "A"
   alias {
     name                   = aws_lb.lb.dns_name
