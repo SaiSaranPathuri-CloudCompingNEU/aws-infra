@@ -1,5 +1,5 @@
 resource "random_id" "id" {
-  byte_length = 8
+  byte_length = 4
 }
 
 resource "aws_s3_bucket" "mybucket" {
@@ -88,7 +88,7 @@ resource "aws_iam_role_policy_attachment" "CloudwatchPolicy" {
 
 
 resource "aws_cloudwatch_log_group" "csye6225_lg" {
-  name = "csye6225"
+  name = "csye6225_lg_${random_id.id.hex}"
 }
 
 resource "aws_cloudwatch_log_stream" "foo" {
