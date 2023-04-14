@@ -55,4 +55,8 @@ variable "domain_name" {
   description = "Domain name of the Route 53 domain"
 }
 
+variable "cert_arn" {
+  type = string
+}
+
  
